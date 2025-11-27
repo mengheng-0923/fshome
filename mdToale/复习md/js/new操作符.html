@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function dom(name) {
+      this.name = name;
+      return [1, 1, 2, 3];
+    }
+    function newDom(fn, ...args) {
+      //创建一个空对象
+      let obj = {};
+      //对象的原型，绑定构造函数的原型
+      Object.setPrototypeOf(obj, fn.prototype);
+      //构造函数的this指向该对象
+      var resoult = fn.apply(obj, args);
+      // 对返回值进行判断
+      return resoult instanceof Object ? resoult : obj;
+    }
+
+    function now1(fn, ...args) {
+      let obj = {};
+      Object.setPrototypeOf(obj, fn.prototype)
+      var resoult = fn.apply(obj, args)
+      return resoult instanceof Object ? resoult : obj;
+    }
+    newDom(dom, "张三");
+    console.log(newDom(dom, "张三"));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      // 求字符出现次数最多的值
+      var str = "qqqqqqqqqqqeeeeeeeerdsdrtrtrtrtrtrtrtrttwe";
+      let obj = {};
+      for (var i = 0; i < str.length; i++) {
+        var chat = str.charAt(i);
+        if (obj[chat]) {
+          obj[chat]++;
+        } else {
+          obj[chat] = 1;
+        }
+        // console.log(chat);
+      }
+      var max = 0;
+      for (var key in obj) {
+        if (max < obj[key]) {
+          max = obj[key];
+        }
+      }
+      var keys = null;
+      for (var key in obj) {
+        if (obj[key] == max) {
+          keys = key;
+        }
+      }
+      console.log(keys, max);
+
+      // console.log(obj);
+      // js中，内部函数时
+      function test() {
+        var num = 1;
+        return function test2() {
+          let num1 = num + 2;
+          // console.log(num1);
+        };
+      }
+      test()();
+    </script>
+    <div></div>
+  </body>
+</html>

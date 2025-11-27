@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //改变this指向构造该函数继承
+      function test1() {
+        this.name = "垃圾";
+      }
+      function test2() {
+        test1.call(this);
+        this.age = 13;
+        console.log(this.age, this.name);
+      }
+      console.log(test2());
+
+      function dome1 () {
+
+      }
+      function dome2() {
+        dome1.call(this)
+      }
+      
+      //  es6 类继承？
+      class parent {
+        constructor(name) {
+          this.name = "z张三";
+        }
+      }
+      class son extends parent {
+        constructor(age) {
+          super(name);
+          this.age = 12;
+          console.log(this);
+        }
+      }
+      let sondata = new son();
+      console.log(sondata);
+      //原型链继承
+      function dom1() {
+        this.color = "red";
+      }
+
+      dom2.prototype = new dom1();
+
+      function dom2() {
+        this.sex = "nam";
+      }
+      let data = new dom2();
+      console.log("data", data.sex, data.color);
+    </script>
+  </body>
+</html>

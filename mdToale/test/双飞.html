@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./reset200802.css" />
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
+    }
+    .content {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    #left {
+      height: 100vh;
+      width: 200px;
+      min-width: 200px;
+      background-color: rgb(210, 145, 101);
+    }
+    .center{
+      height: 100vh;
+      min-width: 300px;
+      flex: 1;
+      background-color: aquamarine;
+    }
+    .right {
+      /* margin-left: -200px; */
+      height: 100vh;
+      width: 200px;
+      min-width: 200px;
+      background-color: rgb(227, 227, 117);
+    }
+  </style>
+  <body>
+    <div class="content">
+      <div id="left">左</div>
+      <div class="center">中</div>
+      <div class="right">右</div>
+    </div>
+  </body>
+</html>

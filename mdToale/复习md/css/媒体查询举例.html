@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /* @media only screen and (max-width: 1000px) {
+      .divs {
+        display: none;
+        visibility: hidden;
+      }
+    }
+    .divs {
+      background-color: rgb(46, 167, 167);
+      width: 100px;
+      height: 100px;
+    } */
+  </style>
+  <body>
+    <div class="divs"></div>
+
+    <img
+      src="fallback.png"
+      srcset="image-650px.png 650w,image-900px.png 900w, image-1200px.png 1200w"
+      sizes="(max-width: 700px) 100px ,(max-width: 1000px) 100px, 2000px 100px"
+      alt="响应式图片示例"
+    />
+  </body>
+</html>

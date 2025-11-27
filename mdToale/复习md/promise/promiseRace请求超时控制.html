@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const dom1 = new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(console.log("dom1请求成功"));
+        }, 2000);
+      });
+
+      function timeoutDom(fn, TimeOutDaly) {
+        const time = new Promise((resolve, reject) => {
+          setTimeout(() => {
+            reject(console.log("success"));
+          }, TimeOutDaly);
+        });
+        return Promise.race([fn, time]);
+      }
+
+      timeoutDom(dom1, 1000)
+        .then((data) => {
+          console.log("DATA", data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
+      // 模拟异步请求函数
+      function fetchData(url) {
+        return new Promise((resolve) => {
+          const delay = Math.random() * 4000; // 随机0-4秒延迟
+          console.log(delay);
+          setTimeout(() => resolve(`数据来自 ${url}`), delay);
+        });
+      }
+
+      //   超时控制函数;
+      function withTimeout(promise, timeoutMs) {
+        const timeoutPromise = new Promise((_, reject) => {
+          console.log(1);
+          setTimeout(
+            () => reject(new Error(`请求超时 (${timeoutMs}ms)`)),
+            timeoutMs
+          );
+        });
+
+        return Promise.race([promise, timeoutPromise]);
+      }
+
+      //   使用示例;
+      const API_URL = "https://api.example.com/data";
+      const TIMEOUT = 2000; // 2秒超时
+
+    //   withTimeout(fetchData(API_URL), TIMEOUT)
+    //     .then((data) => console.log("成功:", data))
+    //     .catch((err) => console.error("失败:", err.message));
+    </script>
+  </body>
+</html>

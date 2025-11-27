@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function parseParamsWithArrays(url) {
+      const params = new URL(url).searchParams;
+      const result = {};
+      for (const [key, value] of params.entries()) {
+        if (result.hasOwnProperty(key)) {
+          result[key] = [].concat(result[key], value);
+        } else {
+          result[key] = value;
+        }
+      }
+      return result;
+    }
+
+    function turnUrl(url) {
+      let params = new URL(url).searchParams;
+      const resoult = {};
+      for (const [key, value] of params.entries()) {
+        if (resoult.hasOwnProperty(key)) {
+          resoult[key] = [].concat(resoult[key], value)
+        } else {
+          resoult[key] = value;
+        }
+      }
+    }
+hasOwnProperty
+    // 测试用例
+    console.log(parseParamsWithArray("http://example.com?a=1&b=2&b=3"));
+    // 输出: {a: "1", b: ["2", "3"]}
+  </script>
+</body>
+
+</html>

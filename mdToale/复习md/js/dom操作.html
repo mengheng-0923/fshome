@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="addTextNode('是！');">是！</button>
+    <button onclick="addTextNode('否！');">否！</button>
+    <button onclick="addTextNode('我们可以！');">我们可以！</button>
+
+    <hr />
+
+    <p id="p1">段落第一行。</p>
+    <div name="divs" id="wode">1231</div>
+    <script>
+      function addTextNode(text) {
+        const newtext = document.createTextNode(text);
+        const p1 = document.getElementById("p1");
+
+        p1.appendChild(newtext);
+      }
+    </script>
+  </body>
+</html>

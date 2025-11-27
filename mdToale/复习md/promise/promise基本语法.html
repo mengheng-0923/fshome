@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 模拟异步操作
+      const fetchUser = (id) =>
+        new Promise((resolve) => {
+          setTimeout(() => resolve({ id, name: `User${id}` }), 1000);
+        });
+
+      const checkPermission = (user) =>
+        new Promise((resolve, reject) => {
+          user.id % 2 === 0
+            ? resolve({ ...user, role: "admin" })
+            : reject({ error: "无法解析" });
+        });
+      const sex = (info) =>
+        new Promise((resolve, reject) => {
+          info.id % 2 === 0
+            ? resolve({ ...info, sex: "男" })
+            : reject(new Error("性别解析错误"));
+        });
+
+      // 1. 基础Promise链式调用
+      fetchUser(4)
+        .then((user) => {
+          console.log("user", user);
+          return checkPermission(user);
+        })
+        .then((enhancedUser) => {
+          console.log("info", enhancedUser);
+          return sex(enhancedUser);
+        })
+        .then((info) => {
+          console.log("info", info);
+        });
+
+      // 2. Promise.all并行处理 如果有错误请求则then中不会获取任何信息，在catch中获取错误捕获
+      Promise.all([fetchUser(2), fetchUser(4), fetchUser(6)])
+        .then((users) => {
+          console.log("All users:", users);
+          return Promise.all(users.map(checkPermission));
+        })
+        .then((admins) => {
+          console.log("All admins:", admins);
+        })
+        .catch((err) => {
+          console.log("Parallel error:", err);
+        });
+
+      // 3. Promise.race竞速
+      const timeout = new Promise((resolve, reject) =>
+        setTimeout(() => resolve({ succeed: "timeout" }), 500)
+      );
+
+      Promise.race([fetchUser(3), timeout])
+        .then((user) => console.log("Race winner:", user))
+        .catch((err) => console.log("Race failed:", err.message));
+
+      // 4. Promise.finally最终处理
+      fetchUser(5)
+        .finally(() => console.log("Cleanup resources"))
+        .then((user) => checkPermission(user))
+        .finally(() => console.log("Request completed"));
+
+      // 5. Promise.allSettled不中断处理
+      Promise.allSettled([
+        fetchUser(7),
+        Promise.reject(new Error("Forced error")),
+        fetchUser(8),
+      ]).then((results) => {
+        console.log('results',results)
+        results.forEach((result, i) =>
+          console.log(`Result ${i}:`,result, result.status)
+        );
+      });
+    </script>
+  </body>
+</html>

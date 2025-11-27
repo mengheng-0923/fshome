@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        let obj12 = {}
+        console.log(obj12)
+      // 全局情况下指向window
+      function dom1() {
+        console.log(this);
+        return "dom1";
+      }
+      //   dom1();
+      //  在对象里的情况
+      let obj = {
+        a: function () {
+          console.log("构造函数", this);
+          return () => {
+            console.log("构造函数==》箭头函数", this);
+          };
+        },
+        b: () => {
+          console.log("箭头函数", this);
+          return function () {
+            console.log("箭头函数==》构造函数", this);
+          };
+        },
+        c: function () {
+          console.log("构造函数", this);
+          return function () {
+            console.log("构造函数==》构造函数", this);
+          };
+        },
+      };
+
+      obj.a(); //obj
+      obj.a()(); // obj
+      obj.b(); //window
+      obj.b()(); //window
+      obj.c(); //obj
+      obj.c()(); //window
+    </script>
+  </body>
+</html>

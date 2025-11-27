@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>标签页通信示例</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .container { border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
+        textarea { width: 100%; height: 100px; margin: 10px 0; }
+        button { background: #4CAF50; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+        .message { margin-top: 20px; padding: 10px; background: #f5f5f5; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>标签页通信演示</h2>
+        <textarea id="messageInput" placeholder="输入要发送的消息..."></textarea>
+        <button id="sendButton">发送消息</button>
+        <div class="message">
+            <h3>接收到的消息：</h3>
+            <div id="receivedMessage">暂无消息</div>
+        </div>
+    </div>
+
+    <script>
+        // 发送消息
+        document.getElementById('sendButton').addEventListener('click', () => {
+            const message = document.getElementById('messageInput').value.trim();
+            if (message) {
+                const msgObj = {
+                    timestamp: new Date().toISOString(),
+                    content: message
+                };
+                // 存储到localStorage（会触发storage事件）
+                localStorage.setItem('crossTabMsg', JSON.stringify(msgObj));
+                document.getElementById('messageInput').value = '';
+            }
+        });
+
+        // 接收消息
+        window.addEventListener('storage', (e) => {
+            console.logI('e',e)
+            if (e.key === 'crossTabMsg') {
+                const msg = JSON.parse(e.newValue);
+                const display = `[${new Date(msg.timestamp).toLocaleString()}] ${msg.content}`;
+                document.getElementById('receivedMessage').textContent = display;
+                
+                // 可选：播放通知音效
+                new Audio('https://actions.google.com/sounds/v1/alerts/notification_simple_01.ogg').play();
+            }
+        });
+
+        // 初始化显示已有消息
+        const storedMsg = localStorage.getItem('crossTabMsg');
+        if (storedMsg) {
+            const msg = JSON.parse(storedMsg);
+            document.getElementById('receivedMessage').textContent = 
+                `[${new Date(msg.timestamp).toLocaleString()}] ${msg.content}`;
+        }
+    </script>
+</body>
+</html>

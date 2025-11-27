@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ul::after {
+        content:'';
+        display: block;
+        clear: both;
+      }
+      ul {
+        /* float: left; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        list-style: none;
+        border: 10px solid rgb(168, 159, 159);
+        /* overflow: hidden; */
+      }
+    
+      li {
+        float: left;
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+    <h1>bfkjads</h1>
+  </body>
+</html>

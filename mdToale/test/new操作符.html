@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      function Fun(name) {
+        this.name = name;
+        return [1, 1, 2, 3];
+      }
+      function create(fn, ...args) {
+        // 1.创建一个空对象；
+        let obj = {};
+        //2.空对象的原型指向构造函数的原型
+          Object.setPrototypeOf(obj, fn.prototype);
+        //3.改变构造函数指向；
+        var result = fn.apply(obj, args);
+        // 4.对构造函数有返回值的处理
+        return result instanceof Object ? result : obj;
+      }
+      create(Fun, "张三");
+      console.log(create(Fun, "张三"));
+    </script>
+    <div></div>
+  </body>
+</html>
