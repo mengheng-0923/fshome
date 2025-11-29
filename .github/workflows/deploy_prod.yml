@@ -28,7 +28,12 @@ jobs:
         run: |
           ssh ${{ secrets.DEPLOY_SERVER_USERNAME }}@${{ secrets.DEPLOY_SERVER_HOST }} <<'EOF'
             cd ${{ secrets.DEPLOY_TARGET_DIR }} # 进入目标目录
-            git pull origin main               # 拉取最新代码
+            if [ ! -d "your-repo-name" ]; then       # 检查目录是否存在
+                git clone github.com # 如果不存在，克隆它
+            else
+                cd your-repo-name                    # 如果存在，进入目录
+                git pull origin main                 # 然后拉取更新
+            fi
             # 在这里添加您项目的构建/安装/重启命令：
             # npm install 
             # npm run build 
