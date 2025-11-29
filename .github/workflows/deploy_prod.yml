@@ -1,55 +1,56 @@
-name: Deploy Vite App to Server via SSH (Fixed)
+name: Deploy Vite App to Production Server # 明确的工作流程名称
 
 on:
   push:
     branches:
-      - main # 监听 main 分支的推送事件
+      - main # 监听 'main' 分支的推送事件
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # 使用 GitHub 的标准虚拟机环境
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repository code # 步骤 1: 获取源代码到 GitHub 虚拟机
         uses: actions/checkout@v4
 
-      - name: Set up SSH agent
+      - name: Set up SSH agent # 步骤 2: 配置 SSH 私钥
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Add known hosts
+      - name: Add known hosts to trust server # 步骤 3: 信任您的服务器地址
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan ${{ secrets.DEPLOY_SERVER_HOST }} >> ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
 
-      - name: Deploy with SSH and run commands
+      - name: Deploy and Build Application on Server # 步骤 4: 连接服务器执行部署和构建
         run: |
           ssh ${{ secrets.DEPLOY_SERVER_USERNAME }}@${{ secrets.DEPLOY_SERVER_HOST }} <<'EOF'
             TARGET_DIR="${{ secrets.DEPLOY_TARGET_DIR }}"
-            # ✅ 修正后的 REPO_URL 语法 ✅
+            # ✅ 已修复的 REPO_URL 语法 ✅
             REPO_URL="github.com{{ github.repository }}.git"
 
             echo "Starting deployment to $TARGET_DIR"
 
-            # 核心逻辑：判断目标目录是否存在 .git 目录
+            # 智能判断：如果目标目录没有 .git 仓库，则首次克隆；否则只拉取更新
             if [ ! -d "$TARGET_DIR/.git" ]; then
-              echo "Repository not found in $TARGET_DIR. Cloning for the first time..."
+              echo "Repository not found locally. Cloning for the first time..."
               mkdir -p "$TARGET_DIR"
               git clone "$REPO_URL" "$TARGET_DIR"
             fi
-            
+
             # 进入目标目录
             cd "$TARGET_DIR"
-            
+
             # 拉取最新代码（main 分支）
             git pull origin main
 
-            # --- 💡 构建命令 💡 ---
-            npm install      
-            npm run build    
-            # ----------------------
+            # --- 🚀 构建步骤 (Vite App) 🚀 ---
+            echo "Installing dependencies and building Vite app..."
+            npm install
+            npm run build
+            # ------------------------------------
 
-            echo "Deployment finished successfully."
+            echo "Deployment and build finished successfully."
           EOF
