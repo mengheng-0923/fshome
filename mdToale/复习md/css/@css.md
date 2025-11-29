@@ -89,11 +89,6 @@ gird： 二维 行和列
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
 # 画一个三角形
 {
     width: 0;
@@ -102,13 +97,6 @@ gird： 二维 行和列
     border-right: 100px solid transparent;
     border-bottom: 100px solid red;
     
-}
-{
-    width:0;
-    height:0;
-    border-left: 100ox solid transparent;
-    border-right: 100ox solid transparent;
-    boorder-bottom: 100px solid red;
 }
 # 盒子水平垂直剧中
 
@@ -124,33 +112,3 @@ top: 50%;
 left: 50%;
 transform: translate(-50%,-50%);
 
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%,-50%)
-
-display: flex;
-justifty-content: center;
-align-item : center;
-
-
-absolute
-transform
-translate
-ellipsis
-direction
-between
-around
-reverse
-display
-visibility
-relative
-hasOwnProperty
-visibility
-visible
-transform
-translate()
-position
-console.log
-hasOwnProperty
-media

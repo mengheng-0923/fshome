@@ -17,3 +17,12 @@ promise.race 取最先完成的promise结果，也可以做请求超时控制
 promise: 适用于简单的异步交互，或者组合多个peomise场景例如 promise.all
 async: 底层依赖promise，await返回的都是promise，
        适合复杂的异步逻辑，尤其是需要进行顺序执行的代码
+
+promise.then
+promise.catch
+promise.race
+promise.finally
+promise.all([]).then(()=>{
+
+})
+

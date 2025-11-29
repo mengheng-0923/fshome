@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //构造函数继承
+        function dom1() {
+            this.color = 'red';
+        }
+        function dom2() {
+            dom1.apply(this)
+            this.age = 123;
+            console.log(this.color, this.age)
+        }
+        dom2();
+        //原型链继承
+        function dom3() {
+            this.name = '占山';
+        }
+        dom4.prototype = new dom3();
+        function dom4() {
+            this.sex = "男";
+        }
+        let data = new dom4();
+        console.log(data.name, data.sex)
+
+        //类继承
+        class dom5 {
+            constructor(name) {
+                this.obj = 'doctor';
+            }
+        }
+        class dom6 extends dom5 {
+            constructor(age) {
+                super(name);
+                this.age = '12';
+            }
+        }
+        let info = new dom6()
+        console.log(info);
+        
+
+    </script>
+
+</body>
+
+</html>
