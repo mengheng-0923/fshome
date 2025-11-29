@@ -1,16 +1,16 @@
-name: Deploy Vite App to Server via SSH (Fixed)
+name: Deploy Vite App to Production Server (Fixed Logic)
 
 on:
   push:
     branches:
-      - main # 监听 main 分支的推送事件
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repository code
         uses: actions/checkout@v4
 
       - name: Set up SSH agent
@@ -18,38 +18,45 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Add known hosts
+      - name: Add known hosts to trust server
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan ${{ secrets.DEPLOY_SERVER_HOST }} >> ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
 
-      - name: Deploy with SSH and run commands
+      - name: Deploy and Build Application on Server
         run: |
           ssh ${{ secrets.DEPLOY_SERVER_USERNAME }}@${{ secrets.DEPLOY_SERVER_HOST }} <<'EOF'
             TARGET_DIR="${{ secrets.DEPLOY_TARGET_DIR }}"
-            # ✅ 修正后的 REPO_URL 语法 ✅
             REPO_URL="https://github.com/${{ github.repository }}.git"
 
             echo "Starting deployment to $TARGET_DIR"
 
-            # 核心逻辑：判断目标目录是否存在 .git 目录
+            # 🚀 优化后的逻辑：确保目录可用 🚀
             if [ ! -d "$TARGET_DIR/.git" ]; then
-              echo "Repository not found in $TARGET_DIR. Cloning for the first time..."
+              echo "Repository not found locally. Cloning for the first time..."
+              # 如果目录非空，清空目录后再克隆
+              if [ "$(ls -A $TARGET_DIR)" ]; then
+                echo "Directory not empty. Clearing contents..."
+                rm -rf ${TARGET_DIR}/*
+              fi
               mkdir -p "$TARGET_DIR"
               git clone "$REPO_URL" "$TARGET_DIR"
+            else
+              echo "Repository found. Pulling latest changes..."
             fi
-            
-            # 进入目标目录
+
+            # 进入目标目录（此时确定仓库已存在）
             cd "$TARGET_DIR"
-            
+
             # 拉取最新代码（main 分支）
             git pull origin main
 
-            # --- 💡 构建命令 💡 ---
-            npm install      
-            npm run build    
-            # ----------------------
+            # --- 构建步骤 (Vite App) ---
+            echo "Installing dependencies and building Vite app..."
+            npm install
+            npm run build
+            # ---------------------------
 
-            echo "Deployment finished successfully."
+            echo "Deployment and build finished successfully."
           EOF
