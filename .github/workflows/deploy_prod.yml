@@ -3,39 +3,55 @@ name: Deploy to Server via SSH # 工作流程的名称
 on:
   push:
     branches:
-      - main # 只有 main 分支有 push 事件时才触发
+      - main # 只有当代码推送到 'main' 分支时才触发此流程
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest # 运行此任务的虚拟机环境
+    runs-on: ubuntu-latest # 使用最新的 Ubuntu 虚拟机环境运行任务
 
     steps:
-      - name: Checkout repository # 第一步：检出代码
+      - name: Checkout repository # 步骤 1: 检出 GitHub 仓库代码到 Actions 虚拟机中
         uses: actions/checkout@v4
 
-      - name: Set up SSH agent # 第二步：配置 SSH 私钥，以便后续 SSH 命令使用
+      - name: Set up SSH agent # 步骤 2: 配置 SSH 私钥，以便后续免密连接服务器
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }} # 引用之前创建的私钥 Secret
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }} # 引用 GitHub Secret 中的私钥
 
-      - name: Add known hosts # 第三步：添加服务器 host 到信任列表，防止 SSH 连接询问
+      - name: Add known hosts # 步骤 3: 将服务器的指纹添加到信任列表，防止 SSH 连接询问确认
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan ${{ secrets.DEPLOY_SERVER_HOST }} >> ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
 
-      - name: Deploy with SSH and run commands # 第四步：连接服务器并执行部署命令
+      - name: Deploy with SSH and run commands # 步骤 4: 连接服务器并执行部署逻辑
+        # 使用 <<'EOF' 语法可以在 SSH 会话中执行多行命令
         run: |
           ssh ${{ secrets.DEPLOY_SERVER_USERNAME }}@${{ secrets.DEPLOY_SERVER_HOST }} <<'EOF'
-            cd ${{ secrets.DEPLOY_TARGET_DIR }} # 进入目标目录
-            if [ ! -d "your-repo-name" ]; then       # 检查目录是否存在
-                git clone github.com # 如果不存在，克隆它
+            TARGET_DIR="${{ secrets.DEPLOY_TARGET_DIR }}"
+            REPO_URL="github.com{{ github.repository }}.git" # 根据当前仓库自动生成 HTTPS URL
+
+            echo "Starting deployment to $TARGET_DIR"
+
+            # 核心逻辑：判断目标目录是否存在 .git 目录
+            if [ ! -d "$TARGET_DIR/.git" ]; then
+              echo "Repository not found in $TARGET_DIR. Cloning for the first time..."
+              # 确保目标目录存在且为空，或者直接在父目录克隆
+              mkdir -p "$TARGET_DIR"
+              git clone "$REPO_URL" "$TARGET_DIR"
             else
-                cd your-repo-name                    # 如果存在，进入目录
-                git pull origin main                 # 然后拉取更新
+              echo "Repository found. Pulling latest changes..."
+              cd "$TARGET_DIR"
+              git pull origin main
             fi
-            # 在这里添加您项目的构建/安装/重启命令：
-            # npm install 
-            # npm run build 
-            # pm2 restart my-app 
+
+            # --- 在这里添加您项目的构建和启动命令 ---
+            # 示例命令 (根据您的实际项目技术栈修改):
+            # npm install
+            # npm run build
+            # pm2 restart your-app-name
+            # systemctl restart your-service
+            # ------------------------------------
+
+            echo "Deployment finished."
           EOF
