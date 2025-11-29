@@ -28,22 +28,18 @@ jobs:
         run: |
           ssh ${{ secrets.DEPLOY_SERVER_USERNAME }}@${{ secrets.DEPLOY_SERVER_HOST }} <<'EOF'
             TARGET_DIR="${{ secrets.DEPLOY_TARGET_DIR }}"
+            # 修正后的 REPO_URL 语法
             REPO_URL="https://github.com/${{ github.repository }}.git"
 
             echo "Starting deployment to $TARGET_DIR"
 
-            # 🚀 优化后的逻辑：确保目录可用 🚀
+            # 🚀 优化后的逻辑：如果目录非空或不是仓库，清空并克隆 🚀
             if [ ! -d "$TARGET_DIR/.git" ]; then
-              echo "Repository not found locally. Cloning for the first time..."
-              # 如果目录非空，清空目录后再克隆
-              if [ "$(ls -A $TARGET_DIR)" ]; then
-                echo "Directory not empty. Clearing contents..."
-                rm -rf ${TARGET_DIR}/*
-              fi
-              mkdir -p "$TARGET_DIR"
+              echo "Repository not found locally. Preparing directory for cloning..."
+              # 清空目录内容，以便 git clone
+              rm -rf "${TARGET_DIR:?}"/*
+              mkdir -p "$TARGET_DIR" # 确保目录存在
               git clone "$REPO_URL" "$TARGET_DIR"
-            else
-              echo "Repository found. Pulling latest changes..."
             fi
 
             # 进入目标目录（此时确定仓库已存在）
