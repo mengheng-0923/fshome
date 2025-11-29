@@ -1,43 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script>
-      let arr = ["q", "w", "r"];
-      for (var value of arr) {
-        console.log(value);
-      }
 
-      let obj = {
-        a: 1,
-        b: 2,
-      };
-      for (var key in obj) {
-        console.log(key, obj[key]);
-      }
-      let switchDom = 1;
-      let str = "";
-      switch (switchDom) {
-        case 1:
-          str = "first";
-          break;
-        case 2:
-          str = "sceond";
-          break;
-        case 3:
-          str = "third";
-          break;
-        case 4:
-          str = "four";
-          break;
-        default:
-          str = "zero";
-      }
-      console.log(str);
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // let arr = ["q", "w", "r"];
+    // for (var value of arr) {
+    //   console.log(value);
+    // }
+
+    // let obj = {
+    //   a: 1,
+    //   b: 2,
+    // };
+
+    // for (var key in obj) {
+    //   console.log(key, obj[key]);
+    // }
+    // let switchDom = 1;
+    // let str = "";
+    // switch (switchDom) {
+    //   case 1:
+    //     str = "first";
+    //     break;
+    //   case 2:
+    //     str = "sceond";
+    //     break;
+    //   case 3:
+    //     str = "third";
+    //     break;
+    //   case 4:
+    //     str = "four";
+    //     break;
+    //   default:
+    //     str = "zero";
+    // }
+    // console.log(str);
+
+
+
+    let arr2 = [1, 2, 3, 4];
+    for (var value of arr2) {
+      console.log(value)
+    }
+
+    for (var i = 0; i < arr2.length; i++) {
+      console.log(arr2[i]);
+    }
+
+    let obj = {
+      a: 1,
+      b: 2
+    }
+    for (var key in obj) {
+      console.log(obj[key]);
+    }
+
+  </script>
+</body>
+
 </html>

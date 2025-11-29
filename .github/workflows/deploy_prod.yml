@@ -1,0 +1,36 @@
+name: Deploy to Server via SSH # 工作流程的名称
+
+on:
+  push:
+    branches:
+      - main # 只有 main 分支有 push 事件时才触发
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # 运行此任务的虚拟机环境
+
+    steps:
+      - name: Checkout repository # 第一步：检出代码
+        uses: actions/checkout@v4
+
+      - name: Set up SSH agent # 第二步：配置 SSH 私钥，以便后续 SSH 命令使用
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }} # 引用之前创建的私钥 Secret
+
+      - name: Add known hosts # 第三步：添加服务器 host 到信任列表，防止 SSH 连接询问
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan ${{ secrets.DEPLOY_SERVER_HOST }} >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Deploy with SSH and run commands # 第四步：连接服务器并执行部署命令
+        run: |
+          ssh ${{ secrets.DEPLOY_SERVER_USERNAME }}@${{ secrets.DEPLOY_SERVER_HOST }} <<'EOF'
+            cd ${{ secrets.DEPLOY_TARGET_DIR }} # 进入目标目录
+            git pull origin main               # 拉取最新代码
+            # 在这里添加您项目的构建/安装/重启命令：
+            # npm install 
+            # npm run build 
+            # pm2 restart my-app 
+          EOF

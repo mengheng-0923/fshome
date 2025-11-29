@@ -9,11 +9,10 @@
 
 <body>
   <script>
-    let str = "012345678987654321";
+    let str = "12345678987654321";
     let str2 = "dasdasd";
-    str.charAt(2);
     console.log(str.charAt(2));
-    console.log(str.indexOf(2));
+    console.log(str.indexOf(3));
     console.log(str.lastIndexOf(2));
     console.log(str.includes("s"));
     console.log(str.concat(str2));
@@ -22,74 +21,36 @@
     console.log(str.slice(2, -2), str);
     console.log(str.split("2"));
     console.log(str.startsWith("0"));
+    console.log('=========================================')
 
     //   获取下列出现字符次数最对的字符
     let str3 = "dasfjklbasdflkjasdbfoaiuwefwieuwdsdsfsdflslsllslsl";
-
-
-    let obj1 = {};
-    for (var i = 0; i < str3.length; i++) {
-      let key = str3.charAt(i)
-      if (obj1[key]) {
-        obj1[key] = obj1[key] + 1;
-      } else {
-        obj1[key] = 1;
-      }
-    }
-    console.log(obj1, '12');
-
-    Object.keys(obj1).forEach((key) => {
-      if (max > obj1[key]) {
-        max = obj1[key];
-      }
-    })
-
-    let obj = {};
+    let objStr = {};
     for (var i = 0; i < str3.length; i++) {
       let key = str3.charAt(i);
-      if (obj[key]) {
-        obj[key] = obj[key] + 1;
+      if (objStr[key]) {
+        objStr[key]++;
       } else {
-        obj[key] = 1;
+        objStr[key] = 1;
       }
     }
-    console.log(obj);
-    for (var i = 0; i < str.length; i++) {
-      let key = str.charAt(i);
-      if (obj[key]) {
-        obj[key]++;
-      } else {
-        obj[key] = 1;
+    console.log('objStr', objStr);
+
+    let maxStr = 0;
+    Object.keys(objStr).forEach((key) => {
+      if (objStr[key] > maxStr) {
+        maxStr = objStr[key];
       }
-    }
-    let max = 0;
-    Object.keys(obj).forEach((key) => {
-      // console.log(key, obj[key]);
-      if (max < obj[key]) {
-        max = obj[key];
-      }
-    });
-
-
-    Object.keys(obj).forEach((key) => {
-      console.log(obj, key, obj[key]);
-
     })
-
-    Object.entries(obj).forEach(([key, value], index) => {
-      console.log(key, value, index);
-      console
-
-    })
-    console.log(max);
-    let keyName;
-    Object.entries(obj).forEach(([key, value]) => {
+    console.log('maxS;tr', maxStr)
+    let keynameStr = '';
+    Object.entries(objStr).forEach(([key, value]) => {
       console.log(key, value);
-      if (value == max) {
-        keyName = key;
+      if (value == maxStr) {
+        keynameStr = key
       }
-    });
-    console.log(keyName);
+    })
+    console.log(keynameStr)
   </script>
 </body>
 

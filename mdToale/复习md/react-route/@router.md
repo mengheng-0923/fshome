@@ -4,8 +4,8 @@
       2.支持嵌套路由和动态路由
       3.实现代码分割和懒加载
 # BrowserRouter 和 HashRouter 有什么区别
-BrowserRouter 基于html5 History API，url更简洁
-HashRouter：兼容性更好，但是美观度不如BrowserRouter
+BrowserRouter：url更简洁美观，刷新页面不会丢失路由的 state 参数
+HashRouter：兼容性更好，但是美观度不如BrowserRouter，刷新页面可能导致路由 state 参数丢失
 # React-Router v5和v6有什么区别 
 1.使用Routers代替Switch 标签
 2.将渲染属性（render/component/children）统一改为element
@@ -54,3 +54,8 @@ replace： 替换当前历史记录，不能后退返回
      />
 2.<navigate path="" perfetch='intent'>perfetch = 'intent'
 const home = lazy(()=> import('./home'))
+# link和navlink的区别
+主要区别在于‌NavLink具有激活状态样式功能‌
+自动添加激活状态样式，默认类名为active
+可通过activeClassName自定义激活样式类名
+可通过activeStyle直接设置激活时的内联样式

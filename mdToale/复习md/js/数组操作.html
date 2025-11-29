@@ -9,9 +9,9 @@
 
 <body>
   <script>
-    let arr = [1, 2, 3, 4, 5];
-    let arrs = arr.concat(6, 7);
-    console.log('arrs', arrs);
+    // let arr = [1, 2, 3, 4, 5];
+    // let arrs = arr.concat(6, 7);
+    // console.log('arrs', arrs);
     //   let pushdom = arr.push(6);
     //   let unshiftDom = arr.unshift(0);
     //   console.log("arr", arr, pushdom, unshiftDom);
@@ -19,40 +19,86 @@
     //   let shiftDom = arr.shift();
 
     // slice
-    let arr1 = arr.slice(1); //删除索引为1
-    let arr2 = arr.slice(-2); //删除倒数第二个
-    let arr3 = arr.slice(1, 3); //提取索引1到3元素
-    let arr4 = arr.slice(1, -1); //提取索引1和倒数第1之间的元素）
+    // let arr1 = arr.slice(1); //删除索引为1
+    // let arr2 = arr.slice(-2); //删除倒数第二个
+    // let arr3 = arr.slice(1, 3); //提取索引1到3元素
+    // let arr4 = arr.slice(1, -1); //提取索引1和倒数第1之间的元素）
 
     // splice 也可可以用于浅拷贝
-    let stringArr = ["a", "b", "c", "d", "e", "f", "g"];
-    //   let dom = stringArr.splice(2); // 从索引2开始删除后边所有项
-    //   let dom = stringArr.splice(1, 3); // 从索引1开始删3个
-    //   let dom = stringArr.splice(1, 1, "wode"); // 从索引1开始删除后边所有项
-    //   console.log(stringArr.splice(1)); //删除第一个
-    //   console.log(stringArr, stringArr.splice(-1)); //删除倒数第一个
-    //   console.log(stringArr, stringArr.splice(0, 2)); //
-    console.log(stringArr, stringArr.splice(1, 1, 2)); //删除第一个
+    // let stringArr = ["a", "b", "c", "d", "e", "f", "g"];
+    // console.log(stringArr, stringArr.splice(1)); //删除第一个
+    // console.log(stringArr, stringArr.splice(-1)); //删除倒数第一个
+    // console.log(stringArr, stringArr.splice(0, 2)); // 从索引1开始删3个
+    // console.log(stringArr, stringArr.splice(1, 1, 2)); //删除第一个
 
     // sort
-    let sortArr = [1, 3, 5, 6, 78, 2, "11", "a", "c", "b"];
-    let newArr = sortArr.sort(function (a, b) {
-      return b - a;
-    });
+    // let sortArr = [1, 3, 5, 6, 78, 2, "11", "a", "c", "b"];
+    // let newArr = sortArr.sort(function (a, b) {
+    //   return b - a;
+    // });
     //   console.log(sortArr, newArr);
 
     //   jion
-    const elements = ["Fire", "Air", "Water"];
-    //   console.log(elements.join("-"));
+    // const elements = ["Fire", "Air", "Water"];
+    // console.log(elements.join("-"));
     // Expected output: "Fire,Air,Water"
     // 数组去重
-    let copyArr = [1, 2, 3, 4, 32, 2, 3, "a", "a", "b"];
-    let uniqun = [...new Set(copyArr)];
-    let uniqun3 = [...new Set(copyArr)];
-    let uniqun4 = Array.from(new Set(copyArr));
-    //   let uniqun2 = Array.form(new Set(copyArr));
+    // let copyArr = [1, 2, 3, 4, 32, 2, 3, "a", "a", "b"];
+    // let uniqun = [...new Set(copyArr)];
+    // let uniqun4 = Array.from(new Set(copyArr));
 
     //   console.log(uniqun,uniqun2);
+
+    let arr = [1, 2, 3, 4, 5];
+    //添加
+    arr.push(6);
+    arr.unshift(0);
+    //删除
+    arr.pop()
+    arr.shift()
+    //查找
+    arr.indexOf(10)
+    //排序
+    let newarr = arr.sort((a, b) => {
+      return b - a;
+    })
+    console.log(newarr);
+    //反转
+    arr.reverse();
+    //扁平化处理
+    arr.flat();
+    //递归实现
+    function flatten(arr) {
+      return arr.reduce((prev, curr) => {
+        return prev.concat(Array.isArray(curr) ? flatten(curr) : curr);
+      }, []);
+    }
+    //转换
+    arr.join('-')// 1 - 2 - 3 - 4;
+    //去重
+    let unArr = [...new Set(arr)];
+    let unArr2 = Array.from(new Set(arr));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </script>
 </body>
 

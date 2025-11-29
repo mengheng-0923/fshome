@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function dom(name) {
+            this.name = name;
+            // return [1, 1, 2, 3];
+        }
+        function dom1(fn, ...args) {
+            let obj = {};
+            Object.setPrototypeOf(obj, fn.prototype);
+            let resoult = fn.apply(obj, args);
+            return resoult instanceof Object ? resoult : obj
+        }
+        console.log(new dom1(dom, 'zhangsan'));
+
+    </script>
+</body>
+
+</html>
