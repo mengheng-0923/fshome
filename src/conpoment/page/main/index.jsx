@@ -20,7 +20,6 @@ export default function Main() {
                     <h1>更爱您的家人...</h1>
                 </div>
 
-
                 {/* <picture>
                     2. 定义媒体查询条件：当最大宽度为 768px 时，使用移动端图片
                     <source media="(max-width: 768px)" srcSet={mobileImage} />
