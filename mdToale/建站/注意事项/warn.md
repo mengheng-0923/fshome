@@ -17,8 +17,6 @@ Installing dependencies and building Vite app...
 解决方案
 # 在服务器上运行以下命令（将 '/path/to/your/repository' 替换为红框中的实际路径）
 git config --global --add safe.directory /path/to/your/repository
-
 git config --global --list
-
 safe.directory=/path/to/your/repository
 成功解决
