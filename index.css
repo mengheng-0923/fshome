@@ -1,0 +1,28 @@
+/* 默认设置：针对所有小于 576px 的超小屏幕（如大多数手机） */
+html {
+    font-size: 10px; /* 基准字体大小，此时 1rem = 14px */
+}
+
+
+
+/* 中等屏幕设备 (如平板电脑, >= 768px) */
+@media (min-width: 834px) {
+    html {
+        font-size: 8px; 
+    }
+}
+
+/* 大屏幕设备 (如笔记本电脑, >= 992px) */
+/* @media (min-width: 992px) {
+    html {
+        font-size: 8px; 
+    }
+} */
+
+/* 超大屏幕设备 (如台式机显示器, >= 1200px) */
+/* @media (min-width: 1200px) {
+    html {
+        font-size: 8px; 
+    }
+} */
+
