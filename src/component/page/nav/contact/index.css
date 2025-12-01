@@ -1,0 +1,28 @@
+.contact {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: .625rem;
+}
+
+.size {
+    font-size: 1.6rem;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    gap: .25rem;
+}
+.textleft {
+    text-align: left;
+    margin-bottom: .625rem;
+}
+.address {
+    border-top: 1px solid #c4c4c4;
+    margin: 0 .625rem;
+    padding:  .9rem
+}
