@@ -71,7 +71,6 @@ export default function Nav() {
                 styles={{
                     mask: {
                         backgroundColor: 'transparent',
-                        opacity: 1
                     }
                 }}>
                 <Menu type="mobile" />
