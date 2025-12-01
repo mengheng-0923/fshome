@@ -1,28 +1,59 @@
+/* 全局应用：移除所有可点击元素的点击高亮 */
+/* 顺便移除焦点轮廓 */
+* {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+body {
+    margin: 0;
+}
+
+h1,
+h2 {
+    margin: 0;
+    padding: 0;
+}
+
 /* 默认设置：针对所有小于 576px 的超小屏幕（如大多数手机） */
 html {
-    font-size: 10px; /* 基准字体大小，此时 1rem = 14px */
+    font-size: 10px;
+    /* 基准字体大小，此时 1rem = 14px */
 }
 
+nav {
+    position: sticky;
+    top: 0;
+    /* 使用浅色背景和透明度 */
+    background-color: rgba(245, 245, 247, .8);
+    /* 2. 添加毛玻璃模糊效果 */
+    backdrop-filter: blur(10px);
+    /* 确保兼容性，为 WebKit 内核浏览器添加前缀 */
+    -webkit-backdrop-filter: blur(10px);
+    /* 确保它在其他内容之上 */
+    z-index: 1000;
+}
 
+.ant-drawer .ant-drawer-section {
+    background: #f7f7f9 !important;
+}
 
-/* 中等屏幕设备 (如平板电脑, >= 768px) */
+.ant-drawer-content-wrapper {
+    /* width: 100% !important; */
+    height: 100vh !important;
+    border: 0 !important;
+}
+.ant-drawer-body{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.ant-drawer-header {
+    border: 0 !important;
+}
+
+/* 中等屏幕设备 (如平板电脑, >= 834px) */
 @media (min-width: 834px) {
     html {
-        font-size: 8px; 
+        font-size: 8px;
     }
 }
-
-/* 大屏幕设备 (如笔记本电脑, >= 992px) */
-/* @media (min-width: 992px) {
-    html {
-        font-size: 8px; 
-    }
-} */
-
-/* 超大屏幕设备 (如台式机显示器, >= 1200px) */
-/* @media (min-width: 1200px) {
-    html {
-        font-size: 8px; 
-    }
-} */
-

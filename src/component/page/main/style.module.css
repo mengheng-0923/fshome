@@ -1,0 +1,92 @@
+.narrator {
+    width: 70%;
+    margin: 1rem auto;
+    font-size: 1.2rem;
+    line-height: 2.5rem;
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+
+.contentStyle {
+    height: 160px;
+    color: #fff;
+    line-height: 160px;
+    text-align: center;
+    background: #364d79,
+}
+
+.info {
+    color: transparent;
+    background-image: linear-gradient(to top, #a9a7a7, #ece9e9);
+    -webkit-background-clip: text;
+    /* WebKit 浏览器前缀 */
+    background-clip: text;
+
+    /* 其他样式 */
+    font-size: 50px;
+    font-weight: bold;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.25rem 1.875rem;
+}
+
+.boxitem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.roundedCorners {
+    border-radius: 0 15px;
+    /* 设置圆角半径 */
+}
+
+@media (min-width: 834px) {
+    .narrator {
+        width: 70%;
+        margin: 1.5rem auto;
+        font-size: 1.5rem;
+        line-height: 2.5rem;
+        text-align: center;
+    }
+
+    .info {
+        font-size: 6rem;
+        text-align: center;
+    }
+
+}
+
+.fadeinup {
+    opacity: 0;
+    transform: translateY(2rem);
+    /* 初始位置在正常位置下方 50px */
+    animation: fadeInUp 1s ease-out forwards;
+    /* 应用名为 "fadeInUp" 的动画，持续 1 秒 */
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(2rem);
+        /* 动画起点：完全透明，下方 50px */
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        /* 动画终点：完全不透明，回到原始位置 */
+    }
+}
