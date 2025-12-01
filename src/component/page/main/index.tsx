@@ -6,6 +6,7 @@ import cl1 from '../../../assets/cl1.jpg';
 import cl2 from '../../../assets/cl2.jpg';
 import ju1 from '../../../assets/ju1.jpg';
 import ju2 from '../../../assets/ju2.jpg';
+import ju3 from '../../../assets/ju3.jpg';
 import moblie4 from '../../../assets/4.jpg';
 
 
@@ -53,10 +54,10 @@ export default function Main() {
                                 从硬装规划到软装搭配，我们确保每一寸空间都和谐统一。我们擅长打造具有内涵的新中式、极简风格，让家成为您心灵休憩的港湾
                             </div>
                             <div>
-                                <img src={ju2} title='一玥家居' alt="一玥家居" loading="lazy" className={style.roundedCorners} style={{ width: '100%', height: "14%" }} />
+                                <img src={ju2} title='一玥家居' alt="一玥家居" loading="lazy"  className={style.hidden} style={{ width: '100%', height: "14%" }} />
                                 <div className={style.boxitem}>
                                     <img src={ju1} title='一玥家居' alt="一玥家居" loading="lazy" className={style.roundedCorners} style={{ width: '40%', height: "14%" }} />
-                                    <img src={moblie4} title='一玥家居' alt="一玥家居" loading="lazy" className={style.roundedCorners} style={{ width: '40%', height: "14%" }} />
+                                    <img src={ju3} title='一玥家居' alt="一玥家居" loading="lazy" className={style.roundedCorners} style={{ width: '40%', height: "14%" }} />
                                 </div>
                             </div>
                         </div>
