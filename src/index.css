@@ -27,7 +27,7 @@ a:hover {
 /* 根据系统自适应设置背景色 */
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: black;
     background-color: #ffffff;
   }
 
