@@ -12,14 +12,14 @@ export default function Contact() {
                     </div >
                     <div className='textleft'>
                         <AudioTwoTone className='size' />
-                        &nbsp;客 服 :&nbsp;&nbsp;&nbsp; 021-4564-9870
+                        &nbsp;客 服 : &nbsp;&nbsp;021-4564-9870
                     </div>
                     <div className='textleft'>
                         <MessageTwoTone className='size' />
-                        &nbsp; 邮 箱 : &nbsp;&nbsp;&nbsp;25420513387@qq.com
+                        &nbsp;邮 箱 : &nbsp;&nbsp;25420513387@qq.com
                     </div>
                 </div>
-                <div className='address'>浙江绍兴御龙街道2879号外贸大厦3402号<a href="">一玥工作室</a></div>
+                <div className='address'>浙江绍兴御龙街道2879号外贸大厦3402 <br /><a href="">一玥工作室</a></div>
             </main>
         </>
     )

@@ -24,11 +24,11 @@
 
 .info {
     color: transparent;
-    background-image: linear-gradient(to top, #a9a7a7, #ece9e9);
+    background-image: linear-gradient(to top, #949494, #ece9e9);
     -webkit-background-clip: text;
     /* WebKit 浏览器前缀 */
     background-clip: text;
-
+    margin-top: .625rem;
     /* 其他样式 */
     font-size: 50px;
     font-weight: bold;
@@ -41,6 +41,8 @@
     flex-direction: column;
     gap: 1.25rem;
     padding: 1.25rem 1.875rem;
+    font-size: 1.25rem;
+    line-height: 2.1rem;
 }
 
 .boxitem {
@@ -67,20 +69,29 @@
         text-align: center;
     }
 
+    .box {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.25rem 1.875rem;
+        font-size: 2rem;
+        line-height: 3.5rem;
+    }
+
 }
 
 .fadeinup {
     opacity: 0;
-    transform: translateY(2rem);
+    transform: translateY(2.5rem);
     /* 初始位置在正常位置下方 50px */
-    animation: fadeInUp 1s ease-out forwards;
+    animation: fadeInUp 2s ease-out forwards;
     /* 应用名为 "fadeInUp" 的动画，持续 1 秒 */
 }
 
 @keyframes fadeInUp {
     0% {
         opacity: 0;
-        transform: translateY(2rem);
+        transform: translateY(2.5rem);
         /* 动画起点：完全透明，下方 50px */
     }
 
