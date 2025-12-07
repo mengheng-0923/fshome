@@ -7,19 +7,16 @@ export default function Contact() {
             <main className='contact'>
                 <div>
                     <div className='textleft'>
-                        <PhoneTwoTone className='size' />
-                        &nbsp;电 话 : &nbsp;16637770650
+                        <PhoneTwoTone className='size' />电 话 : &nbsp;15869155376
                     </div >
                     <div className='textleft'>
-                        <AudioTwoTone className='size' />
-                        &nbsp;客 服 : &nbsp;&nbsp;021-4564-9870
+                        <AudioTwoTone className='size' />客 服 : &nbsp;&nbsp;2532051336
                     </div>
                     <div className='textleft'>
-                        <MessageTwoTone className='size' />
-                        &nbsp;邮 箱 : &nbsp;&nbsp;25420513387@qq.com
+                        <MessageTwoTone className='size' />邮 箱 : &nbsp;&nbsp;2532051336@qq.com
                     </div>
                 </div>
-                <div className='address'>浙江绍兴御龙街道2879号外贸大厦3402 <br /><a href="">一玥工作室</a></div>
+                <div className='address'>浙江省杭州市余杭区余杭街道沈家店社区1号综合楼2871室 <br /><a href="">一玥工作室</a></div>
             </main>
         </>
     )

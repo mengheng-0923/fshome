@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>粘性定位示例</title>
+    <!-- <link rel="stylesheet" href="./index.css"> -->
+    <!-- 内部样式 -->
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial;
+        height: 2000px; /* 制造滚动条 */
+      }
+      .sticky-nav {
+        margin: 100px;
+        position: sticky;
+        top: 0; /* 触发粘性的阈值 */
+        background: #333;
+        color: white;
+        padding: 15px;
+        z-index: 100;
+      }
+      .content {
+        margin-top: 20px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sticky-nav">导航栏（滚动时会固定在顶部）
+
+      <div class="content">
+        <p>页面内容...</p>
+        <!-- 更多内容用于滚动测试 -->
+      </div>
+    </div>
+  </body>
+</html>

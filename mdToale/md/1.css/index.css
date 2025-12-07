@@ -1,0 +1,103 @@
+* {}
+
+
+:root {
+    --primary-color: #007bff;
+    /* 主色调 */
+    --font-size-base: 16px;
+    /* 基础字体大小 */
+}
+
+div {}
+
+.class {}
+
+#id {}
+
+div span {}
+
+div+li {}
+
+ul>li {}
+
+[data-id="12345"] {}
+
+:first-child {}
+
+:hover {}
+
+/* 触发bfc (块级格式化上下文)*/
+.BFC {
+    /* 配置一个非visible*/
+    overflow: hidden;
+    /* fixed;*/
+    position: absolute;
+    /*inline-block*/
+    display: inline;
+    /* 配置一个非none*/
+    float: left;
+}
+
+::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.display {
+    position: fixed;
+    position: relative;
+    position: absolute;
+    position: sticky;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: none;
+}
+
+/* 文字超出省略号表示 */
+.div {
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 画一个三角 */
+.div {
+    height: 0;
+    width: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 100px solid red;
+}
+
+/* 盒子居中 */
+.div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div {
+    display: grid;
+    place-items: center;
+}
+
+.div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}

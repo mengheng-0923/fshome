@@ -1,48 +1,38 @@
-.narrator {
+/* 导航栏下方备注信息 */
+.about {
     width: 70%;
-    margin: 1rem auto;
-    font-size: 1.2rem;
-    line-height: 2.5rem;
+    margin: 0.8rem auto;
+    font-size: .75rem;
+    line-height: 1.3rem;
     text-align: center;
+    color: #1d1d1f;
 }
 
-.content {
+.mainBox {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    gap: 20px;
+}
+
+.banner {
+    position: relative;
+    height: 31.25rem;
+    overflow: hidden;
+}
+
+.bannerInfo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    height: 90%;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
-}
-
-
-.contentStyle {
-    height: 160px;
-    color: #fff;
-    line-height: 160px;
-    text-align: center;
-    background: #364d79,
-}
-
-.info {
-    color: transparent;
-    background-image: linear-gradient(to top, #949494, #ece9e9);
-    -webkit-background-clip: text;
-    /* WebKit 浏览器前缀 */
-    background-clip: text;
-    margin-top: .625rem;
-    /* 其他样式 */
-    font-size: 50px;
-    font-weight: bold;
-    font-size: 3rem;
-    text-align: center;
-}
-
-.box {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    padding: 1.25rem 1.875rem;
-    font-size: 1.25rem;
-    line-height: 2.1rem;
+    /* gap: 5rem; */
 }
 
 .boxitem {
@@ -50,58 +40,148 @@
     justify-content: space-between;
 }
 
-.roundedCorners {
-    border-radius: 0 15px;
-    /* 设置圆角半径 */
+.footerSwiper {
+    margin-bottom: 20px;
+}
+/* mobile */
+@media only screen and (max-width: 768px) {
+    [ data-type='selectBox'] {
+        width: 100%;
+        height: 560px;
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    [ data-type='selectLogoBox'] {
+        width: 100%;
+        height: 220px;
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    [data-type-item='safe'] {
+        background-image: url(./../../../assets/images/safe/index.jpg);
+    }
+
+    [data-type-item='logo'] {
+        background-image: url(./../../../assets/images/logo/logo.png);
+    }
+
+    [data-type-item='fugu'] {
+        background-image: url(./../../../assets/images/fugu/index.jpg);
+    }
+
+    [data-type-item='kafei'] {
+        background-image: url(./../../../assets/images/kafei/index.jpg);
+    }
+
+    [data-type-item='sha'] {
+        background-image: url(./../../../assets/images/sha/index.jpg);
+    }
 }
 
-@media (min-width: 834px) {
-    .narrator {
-        width: 70%;
-        margin: 1.5rem auto;
-        font-size: 1.5rem;
-        line-height: 2.5rem;
-        text-align: center;
+@media only screen and (max-width: 820px) {
+    [ data-type='selectBox'] {
+        width: 100%;
+        height: 800px;
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
-    .info {
-        font-size: 6rem;
-        text-align: center;
+    [ data-type='selectLogoBox'] {
+        width: 100%;
+        height: 500px;
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
-    .box {
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-        padding: 1.25rem 1.875rem;
-        font-size: 2rem;
-        line-height: 3.5rem;
+    [data-type-item='safe'] {
+        background-image: url(./../../../assets/images/safe/index.jpg);
     }
 
-    .hidden {
-        display: none;
+    [data-type-item='logo'] {
+        background-image: url(./../../../assets/images/logo/logo.png);
     }
 
+    [data-type-item='fugu'] {
+        background-image: url(./../../../assets/images/fugu/index.jpg);
+    }
+
+    [data-type-item='kafei'] {
+        background-image: url(./../../../assets/images/kafei/index.jpg);
+    }
+
+    [data-type-item='sha'] {
+        background-image: url(./../../../assets/images/sha/index.jpg);
+    }
 }
 
+/* 
+@media only screen and (max-width: 768px) {
+    .banner {
+        width: 100%;
+        height: 500px;
+        background-size: 768px 500px;
+        background-repeat: no-repeat;
+        background-image: url(./../../../assets/ju1.jpg);
+    }
+}
+
+@media only screen and (max-width: 820px) {
+    .banner {
+        width: 100%;
+        height: 500px;
+        background-size: 820px 500px;
+        background-repeat: no-repeat;
+        background-image: url(./../../../assets/cl1.jpg);
+    }
+}
+
+@media only screen and (min-width: 820px) and (max-width: 1069px) {
+    .banner {
+        margin: 0 auto;
+        width: 100%;
+        height: 500px;
+        background-size: 2600px 500px;
+        background-repeat: no-repeat;
+        background-image: url(./../../../assets/ju1.jpg);
+    }
+}
+
+@media only screen and (min-width: 1069px) {
+    .banner {
+        width: 100%;
+        height: 500px;
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url(./../../../assets/ju2.jpg);
+        left: unset;
+        right: unset;
+        -webkit-transform: unset;
+        transform: unset
+    }
+} */
+
+/* 淡入动画 */
 .fadeinup {
     opacity: 0;
     transform: translateY(2.5rem);
-    /* 初始位置在正常位置下方 50px */
     animation: fadeInUp 2s ease-out forwards;
-    /* 应用名为 "fadeInUp" 的动画，持续 1 秒 */
 }
 
 @keyframes fadeInUp {
     0% {
         opacity: 0;
         transform: translateY(2.5rem);
-        /* 动画起点：完全透明，下方 50px */
     }
 
     100% {
         opacity: 1;
         transform: translateY(0);
-        /* 动画终点：完全不透明，回到原始位置 */
     }
 }

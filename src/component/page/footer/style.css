@@ -1,0 +1,14 @@
+.ant-collapse-title {
+    font-weight: 500 !important;
+    font-size: .75rem;
+    color: var(--footer-text-color);
+}
+
+.ant-collapse-body {
+    color: var(--footer-text-color);
+    font-size: .75rem;
+}
+
+.ant-collapse-item-active .ant-collapse-title {
+    color: black;
+}

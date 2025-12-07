@@ -1,0 +1,24 @@
+.panelitem li {
+    margin: 0 0 4px 25px;
+}
+
+.footerinfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 14px 25px;
+    font-size: 14px;
+    border-top: 1px solid #cbcbcb;
+    font-size: 12px;
+}
+
+.footersection {
+    font-size: 12px;
+    padding: 20px;
+    letter-spacing: 0;
+}
+
+.footerbox {
+    background-color: rgb(245, 245, 247);
+    color: var(--footer-text-color);
+}

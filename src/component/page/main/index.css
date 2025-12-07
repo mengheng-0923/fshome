@@ -1,0 +1,30 @@
+ .ant-btn.ant-btn-variant-solid {
+     box-shadow: none;
+ }
+
+ .ant-btn.ant-btn-color-primary {
+     background-color: #0000008a !important;
+     border: none;
+     font-weight: 700;
+ }
+
+ [data-type-item='fugu'] .ant-btn.ant-btn-color-dangerous {
+     background-color: #907361bf !important;
+     border: none;
+
+ }
+
+ [data-type-item='kafei'] .ant-btn.ant-btn-color-dangerous {
+     background-color: #89450a !important;
+     border: none;
+ }
+
+ [data-type-item='sha'] .ant-btn.ant-btn-color-dangerous {
+     background-color: #c1b9af !important;
+     border: none;
+ }
+
+ [data-type-item='gg'] .ant-btn.ant-btn-color-dangerous {
+     background-color: #c69e6d  !important;
+     border: none;
+ }
