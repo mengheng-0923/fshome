@@ -1,37 +1,46 @@
-/* 全局应用：移除所有可点击元素的点击高亮 */
-/* 顺便移除焦点轮廓 */
 * {
     -webkit-tap-highlight-color: transparent;
     outline: none;
 }
 
-body {
-    margin: 0;
-}
-
-h1,h3,
-h2 {
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    font-size: 16px;
+    color: #1d1d1f;
     margin: 0;
     padding: 0;
 }
 
-/* 默认设置：针对所有小于 576px 的超小屏幕（如大多数手机） */
-html {
-    font-size: 10px;
-    /* 基准字体大小，此时 1rem = 14px */
+body {
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background-color: #fff;
+    color: #1d1d1f;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
 }
 
-nav {
-    position: sticky;
-    top: 0;
-    /* 使用浅色背景和透明度 */
-    background-color: rgba(245, 245, 247, .8);
-    /* 2. 添加毛玻璃模糊效果 */
-    backdrop-filter: blur(10px);
-    /* 确保兼容性，为 WebKit 内核浏览器添加前缀 */
-    -webkit-backdrop-filter: blur(10px);
-    /* 确保它在其他内容之上 */
-    z-index: 1000;
+h1,
+h3,
+h2 {
+    margin: 0;
+    padding: 0;
+}
+ul, li {
+    list-style: none;  
+    margin: 0;          
+    padding: 0;
+}
+
+img {
+    /* 保持图片的原始宽高比，防止拉伸 */
+    max-width: 100%;
+    height: auto;
 }
 
 .ant-drawer .ant-drawer-section {
@@ -39,21 +48,110 @@ nav {
 }
 
 .ant-drawer-content-wrapper {
-    /* width: 100% !important; */
     height: 100vh !important;
     border: 0 !important;
 }
-.ant-drawer-body{
+
+.ant-drawer-body {
     padding: 0 !important;
     margin: 0 !important;
 }
+
 .ant-drawer-header {
     border: 0 !important;
 }
+
+/* .ant-btn {
+    border: none;
+    margin: 0;
+}
+
+.ant-btn.ant-btn-color-dangerous {
+    background-color: #c07b5473 !important;
+    border: none;
+
+}
+
+.ant-btn.ant-btn-color-primary {
+    background-color: #fbfbfb63 !important;
+    border: none;
+    color: #c07b5473;
+    font-weight: 700;
+}
+
+.ant-btn.ant-btn-variant-solid {
+    box-shadow: none;
+} */
+
 
 /* 中等屏幕设备 (如平板电脑, >= 834px) */
 @media (min-width: 834px) {
     html {
         font-size: 8px;
+        color: #1d1d1f;
     }
 }
+
+@media (min-width: 576px) {
+    html {
+        background-color: #f8f9fa;
+        font-size: 16px;
+        /* 保持不变或微调 */
+    }
+
+    .container {
+        max-width: 540px;
+    }
+}
+
+/* -------------------------------------------------- */
+/* 3. 中型设备 (≥ 768px) - 平板电脑                  */
+/* -------------------------------------------------- */
+@media (min-width: 768px) {
+    html {
+        background-color: #e9ecef;
+        font-size: 17px;
+        /* 平板上字体略微增大 */
+    }
+}
+
+/* -------------------------------------------------- */
+/* 4. 大型设备 (≥ 992px) - 桌面电脑                  */
+/* -------------------------------------------------- */
+@media (min-width: 992px) {
+    html {
+        background-color: #dee2e6;
+        font-size: 18px;
+        /* 桌面端使用 18px 基础字体 */
+    }
+
+    .container {
+        max-width: 960px;
+    }
+}
+
+/* -------------------------------------------------- */
+/* 5. 超大型设备 (≥ 1200px) - 大尺寸桌面             */
+/* -------------------------------------------------- */
+@media (min-width: 1200px) {
+    body {
+        font-size: 18px;
+        /* 保持 18px */
+    }
+
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* -------------------------------------------------- */
+/* 6. 特超大型设备 (≥ 1400px)                        */
+/* -------------------------------------------------- */
+/* @media (min-width: 1400px) {
+    body {
+         font-size: 19px; 超大屏幕字体可增大至 19px 或 20px
+    }
+    .container {
+        max-width: 1320px;
+    }
+} */

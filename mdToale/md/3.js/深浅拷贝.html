@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj1 = { name: 'jack' };
+        let obj2 = JSON.parse(JSON.stringify(obj1));
+
+        obj1.name = 'yes'
+        // console.log(obj1);
+        // console.log(obj2);
+
+
+        let arr1 = [1, 2, 3, [4, 5]];
+        // let arr2 = [...arr1];
+        let arr2 = [].concat(arr1);
+        arr1[0] = 8;
+        arr1[3][0] = 9;
+        // console.log(arr1);
+        // console.log(arr2);
+
+        let objArr = {
+            name: 1,
+            age: 'wode',
+            arr: [1, 2, 3],
+            fn: function () {
+                // console.log('123');
+            }
+        }
+
+        // 递归函数
+        function deepClone(obj) {
+            if (typeof obj == 'object' && obj !== null) {
+                let res = Array.isArray(obj) ? [] : {};
+                for (let key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        // console.log(key);
+                        res[key] = deepClone(obj[key]);
+                    }
+                }
+                console.log('res', res);
+                return res;
+            } else {
+                // console.log(obj);
+                return obj;
+            }
+        }
+        // 1  
+        console.log(deepClone(objArr));
+
+        function deepClone(obj) {
+            if (obj === 'obj' && obj !== null) {
+                let res = Array.isArray(obj) ? [] : {};
+                for (let key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        res[key] = deepClone(obj[key]);
+                    }
+                }
+                return res
+
+            } else {
+                return obj;
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

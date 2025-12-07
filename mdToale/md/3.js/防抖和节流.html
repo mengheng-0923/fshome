@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // ========================================防抖函数
+    function debounce(fn, delay) {
+      let timer;
+      return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          fn.apply(this, args);
+        }, delay);
+      };
+      timer = null;
+    }
+
+    function debounce(fn, delay) {
+      let timer;
+      return function (...args) {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          fn.apply(this, args)
+        }, delay)
+      }
+    }
+    window.addEventListener(
+      "resize",
+      debounce(() => {
+        console.log(this);
+        console.log("调整结束再执行");
+      }, 500)
+    );
+
+    //========================================节流函数
+    function throttle(fn, delay) {
+      let last = 0;
+      return function (...args) {
+        const now = Date.now();
+        if (now - last >= delay) {
+          fn.apply(this, args);
+          last = now;
+        }
+      };
+    }
+    window.addEventListener(
+      "scroll",
+      throttle1(() => { }, 500)
+    );
+
+  </script>
+  <div style="height: 3000px; background-color: rgb(170, 183, 183); width: 100px"></div>
+</body>
+
+</html>

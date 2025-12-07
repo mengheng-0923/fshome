@@ -1,44 +1,68 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState } from 'react';
+import { 
+  BrowserRouter as Router, 
+  Routes, 
+  Route, 
+  Link, 
+  Navigate, 
+  Outlet 
+} from 'react-router-dom';
 
-// useMemo 示例：缓存计算结果
-function ExpensiveCalculation({ number }) {
-    const expensiveValue = useMemo(() => {
-        console.log('执行复杂计算...');
-        return number * number; // 模拟耗时计算
-    }, [number]);
+// --------------------------------------------------
+// 1. 模拟认证状态（实际应用中通常在全局状态管理中）
+// --------------------------------------------------
+const isAuthenticated = false; // 假设用户当前未登录
 
-    return <div>计算结果: {expensiveValue}</div>;
+// --------------------------------------------------
+// 2. 路由守卫组件 (ProtectedRoute)
+// --------------------------------------------------
+const ProtectedRoute = ({ isAllowed, redirectPath = '/login' }) => {
+  if (!isAllowed) {
+    // 如果没有权限，立即导航到登录页
+    // replace 属性确保用户无法通过浏览器返回按钮回到受保护页面
+    return <Navigate to={redirectPath} replace />;
+  }
+
+  // 如果有权限，渲染嵌套的子路由（即 <Outlet /> 代表的 AdminPage）
+  return <Outlet />;
+};
+
+// --------------------------------------------------
+// 3. 页面组件
+// --------------------------------------------------
+
+const HomePage = () => <h2>首页 (任何人都可以访问)</h2>;
+const LoginPage = () => <h2>登录页 (请登录...)</h2>;
+const AdminPage = () => <h2>管理员面板 (仅限登录用户访问)</h2>;
+
+// --------------------------------------------------
+// 4. 主应用配置路由
+// --------------------------------------------------
+
+function App() {
+  return (
+    <Router>
+      <nav>
+        <Link to="/">首页</Link> | 
+        <Link to="/login">登录</Link> | 
+        <Link to="/admin">管理员页面</Link>
+      </nav>
+      
+      <Routes>
+        {/* 公共路由 */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* 核心守卫逻辑：将 ProtectedRoute 作为父级 Route */}
+        <Route element={<ProtectedRoute isAllowed={isAuthenticated} redirectPath="/login" />}>
+          
+          {/* 当访问 /admin 时，会先经过 ProtectedRoute 的判断 */}
+          <Route path="/admin" element={<AdminPage />} />
+          
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
-// useCallback 示例：缓存函数引用
-function ChildComponent({ onClick }) {
-    console.log('子组件渲染');
-    return <button onClick={onClick}>点击我</button>;
-}
-
-const MemoizedChild = React.memo(ChildComponent);
-
-export default function ParentComponent() {
-    const [count, setCount] = useState(0);
-    const [inputValue, setInputValue] = useState('');
-
-    // useCallback 缓存函数，避免子组件不必要渲染
-    const handleClick = useCallback(() => {
-        console.log('按钮被点击，当前计数:', count);
-    }, [count]);
-
-    return (
-        <div>
-            <input
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="输入内容观察子组件是否重新渲染"
-            />
-            <button onClick={() => setCount(c => c + 1)}>
-                计数: {count}
-            </button>
-            <ExpensiveCalculation number={count} />
-            <MemoizedChild onClick={handleClick} />
-        </div>
-    );
-}
+export default App;
